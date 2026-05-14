@@ -1,28 +1,65 @@
-import { FaDownload } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { FaDownload, FaArrowDown } from 'react-icons/fa'
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
+}
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] } },
+}
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center text-center px-6 pt-16">
-      <div className="max-w-2xl">
-        <p className="text-primary font-mono text-sm tracking-widest uppercase mb-4">Hi there, I'm</p>
-        <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
-          Divyanshu Gupta
-        </h1>
-        <h2 className="text-xl md:text-2xl text-gray-400 mt-4">
-          Software Engineer & Web Developer
-        </h2>
-        <p className="text-gray-500 mt-6 max-w-lg mx-auto leading-relaxed">
-          A results-driven developer <strong className="text-gray-300">coding since school</strong>. I specialize in building clean, responsive websites and am currently seeking <strong className="text-gray-300">freelance opportunities</strong> while pursuing my B.Tech journey.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 mt-10">
-          <a href="#contact" className="px-8 py-3 bg-primary text-dark-900 font-bold rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all hover:-translate-y-1">
-            Let's Work Together
+    <section id="home" className="min-h-[100dvh] flex items-center justify-center text-center px-5 relative overflow-hidden">
+      {/* Floating gradient orbs - smaller on mobile */}
+      <div className="absolute top-1/4 -left-20 w-48 md:w-72 h-48 md:h-72 bg-primary/10 rounded-full blur-[100px] animate-float" />
+      <div className="absolute bottom-1/4 -right-20 w-52 md:w-80 h-52 md:h-80 bg-accent/10 rounded-full blur-[100px] animate-float [animation-delay:3s]" />
+
+      <motion.div variants={container} initial="hidden" animate="visible" className="max-w-3xl relative">
+        <motion.p variants={item} className="text-primary font-mono text-xs sm:text-sm tracking-widest mb-4 sm:mb-6">
+          {'<Hello World />'}
+        </motion.p>
+
+        <motion.h1 variants={item} className="text-4xl sm:text-5xl md:text-8xl font-black leading-[0.9] tracking-tight">
+          <span className="text-gradient">Divyanshu</span>
+          <br />
+          <span className="text-white/90">Gupta</span>
+        </motion.h1>
+
+        <motion.p variants={item} className="text-base sm:text-lg md:text-xl text-muted mt-4 sm:mt-6 font-light">
+          I craft <span className="text-primary font-medium">pixel-perfect</span> web experiences.
+        </motion.p>
+
+        <motion.p variants={item} className="text-gray-600 mt-3 sm:mt-4 max-w-md mx-auto text-xs sm:text-sm leading-relaxed">
+          Developer since school • React & Tailwind • Open for freelance
+        </motion.p>
+
+        <motion.div variants={item} className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
+          <a href="#contact" className="group relative px-7 py-3.5 bg-primary/10 border border-primary/50 text-primary font-bold rounded-full overflow-hidden hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95 text-sm sm:text-base">
+            <span className="relative z-10">Hire Me</span>
+            <div className="absolute inset-0 bg-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </a>
-          <a href="/my-cv.pdf" download="Divyanshu_Gupta_CV" className="px-8 py-3 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary/10 transition-all hover:-translate-y-1 flex items-center gap-2">
-            <FaDownload /> Download CV
+          <a href="/my-cv.pdf" download="Divyanshu_Gupta_CV" className="px-7 py-3.5 border border-white/10 text-gray-400 rounded-full font-medium hover:border-primary/50 hover:text-primary transition-all active:scale-95 flex items-center justify-center gap-2 text-sm">
+            <FaDownload className="text-xs" /> Resume
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.a
+        href="#about"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+        className="absolute bottom-8 text-primary/40 hover:text-primary transition-colors"
+      >
+        <FaArrowDown />
+      </motion.a>
+
+      {/* Corner decorations - desktop only */}
+      <div className="absolute top-20 left-10 w-px h-20 bg-gradient-to-b from-primary/40 to-transparent hidden md:block" />
+      <div className="absolute top-20 left-10 w-20 h-px bg-gradient-to-r from-primary/40 to-transparent hidden md:block" />
     </section>
   )
 }

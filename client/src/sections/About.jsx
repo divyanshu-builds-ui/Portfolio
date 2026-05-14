@@ -1,31 +1,45 @@
-import SectionHeading from '../components/SectionHeading'
+import Reveal from '../components/Reveal'
 import { FaGraduationCap, FaCode, FaRocket } from 'react-icons/fa'
 
-const highlights = [
+const tags = [
   { icon: <FaGraduationCap />, label: '12th Graduate' },
-  { icon: <FaCode />, label: 'Coding Enthusiast' },
+  { icon: <FaCode />, label: 'Self-taught Dev' },
   { icon: <FaRocket />, label: 'Fast Learner' },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 max-w-4xl mx-auto">
-      <SectionHeading number="01" title="About Me" />
-      <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12 hover:border-primary/40 transition-colors">
-        <p className="text-gray-400 leading-relaxed text-lg mb-4">
-          I am a dedicated <strong className="text-gray-200">Web Developer</strong> who recently passed Class 12. My journey into the world of technology began in school, where I discovered my passion for coding and problem-solving.
-        </p>
-        <p className="text-gray-400 leading-relaxed text-lg">
-          Right now, I am mastering <strong className="text-gray-200">HTML & CSS</strong> while diving into the basics of <strong className="text-gray-200">JavaScript</strong>. My ultimate goal is to become a Software Engineer and contribute to meaningful projects.
-        </p>
-        <div className="flex flex-wrap gap-4 mt-8">
-          {highlights.map(h => (
-            <span key={h.label} className="flex items-center gap-2 px-5 py-3 bg-primary/10 text-primary border border-primary/20 rounded-xl text-sm font-semibold hover:bg-primary hover:text-white transition-all cursor-default">
-              {h.icon} {h.label}
-            </span>
-          ))}
+    <section id="about" className="py-20 sm:py-32 px-5 sm:px-6 max-w-4xl mx-auto">
+      <Reveal>
+        <p className="text-primary font-mono text-xs tracking-widest uppercase mb-3">// about</p>
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-8 sm:mb-10">
+          A bit about <span className="text-gradient">me</span>
+        </h2>
+      </Reveal>
+
+      <Reveal delay={0.2}>
+        <div className="glass-card p-6 sm:p-8 md:p-12 relative group hover:border-primary/20 transition-all duration-500">
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          <div className="relative">
+            <p className="text-muted text-base sm:text-lg leading-relaxed mb-4">
+              I'm a web developer who started coding in school. I build responsive, clean websites and I'm currently mastering <span className="text-primary">React</span>, <span className="text-primary">Tailwind CSS</span>, and <span className="text-primary">JavaScript</span>.
+            </p>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+              My goal is to become a full-stack engineer. I believe in learning by building — every project teaches me something new.
+            </p>
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-6 sm:mt-8">
+              {tags.map((t, i) => (
+                <Reveal key={t.label} delay={0.3 + i * 0.1} direction="scale">
+                  <span className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/5 text-primary border border-primary/10 rounded-full text-xs sm:text-sm font-mono hover:bg-primary/10 hover:border-primary/30 transition-all">
+                    {t.icon} {t.label}
+                  </span>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
