@@ -16,6 +16,24 @@ export const projects = [
     emoji: '🌐',
   },
   {
+    title: 'Birju Kirana — Hyperlocal E-Commerce',
+    desc: 'Flipkart-style grocery delivery platform for 5km radius. Features pincode verification, product listings, cart system, and local delivery tracking.',
+    tech: ['React', 'Node.js', 'Tailwind', 'Pincode API'],
+    github: '#',
+    live: 'https://birjukirana.com',
+    gradient: 'from-green-500/20 to-emerald-500/20',
+    emoji: '🛒',
+  },
+  {
+    title: 'Lucy Garden — Retail Payment Platform',
+    desc: 'Payment-focused digital platform for a local retail business. Handles transactions, invoicing, and customer management for daily operations.',
+    tech: ['React', 'Node.js', 'Payment Integration', 'Tailwind'],
+    github: '#',
+    live: 'https://lucygarden.in',
+    gradient: 'from-purple-500/20 to-pink-500/20',
+    emoji: '💳',
+  },
+  {
     title: 'User Authentication System',
     desc: 'Secure login/signup interface with robust validation, clean UI/UX, and frontend connected to backend services.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Backend API'],
@@ -23,15 +41,6 @@ export const projects = [
     live: '#',
     gradient: 'from-blue-500/20 to-cyan-500/20',
     emoji: '🔐',
-  },
-  {
-    title: 'Commercial Digital Platforms',
-    desc: 'Web UI and digital assets for local retail businesses — interface code, branding layouts, and production-ready designs.',
-    tech: ['HTML', 'CSS', 'JavaScript', 'Canva'],
-    github: '#',
-    live: '#',
-    gradient: 'from-purple-500/20 to-pink-500/20',
-    emoji: '🏪',
   },
 ]
 
