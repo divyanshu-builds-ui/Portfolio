@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from '../components/Reveal'
 import Counter from '../components/Counter'
-import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa'
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
 const projects = [
   {
@@ -11,6 +11,8 @@ const projects = [
     tech: ['React', 'Tailwind', 'Vite', 'Framer Motion'],
     github: 'https://github.com/divyanshu-builds-ui/Portfolio',
     live: '#',
+    gradient: 'from-primary/20 to-accent/20',
+    emoji: '🌐',
   },
   {
     title: 'SecureAccess Login UI',
@@ -18,6 +20,8 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     github: '#',
     live: '#',
+    gradient: 'from-blue-500/20 to-cyan-500/20',
+    emoji: '🔐',
   },
   {
     title: 'Modern Dashboard',
@@ -25,6 +29,8 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     github: '#',
     live: '#',
+    gradient: 'from-purple-500/20 to-pink-500/20',
+    emoji: '📊',
   },
 ]
 
@@ -72,29 +78,30 @@ export default function Projects() {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="glass-card p-5 sm:p-7 flex flex-col min-w-[280px] sm:min-w-0 h-full snap-center group relative overflow-hidden hover:border-primary/20 transition-all duration-300"
+              className="glass-card flex flex-col min-w-[280px] sm:min-w-0 h-full snap-center group relative overflow-hidden hover:border-primary/20 transition-all duration-300"
             >
-              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="flex justify-between items-center mb-4 sm:mb-5">
-                <FaFolder className="text-primary/40 text-xl sm:text-2xl group-hover:text-primary transition-colors" />
-                <div className="flex gap-3 text-gray-600">
-                  <a href={p.github} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors p-1"><FaGithub /></a>
-                  <a href={p.live} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors text-sm p-1"><FaExternalLinkAlt /></a>
+              {/* Project preview image/gradient */}
+              <div className={`h-32 sm:h-36 bg-gradient-to-br ${p.gradient} flex items-center justify-center text-4xl relative overflow-hidden`}>
+                <span className="group-hover:scale-125 transition-transform duration-500">{p.emoji}</span>
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-dark-950/80 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <a href={p.github} target="_blank" rel="noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-primary hover:text-dark-950 transition-all"><FaGithub /></a>
+                  <a href={p.live} target="_blank" rel="noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-primary hover:text-dark-950 transition-all text-sm"><FaExternalLinkAlt /></a>
                 </div>
               </div>
 
-              <h3 className="text-sm sm:text-base font-bold mb-2 text-gray-200 group-hover:text-primary transition-colors">{p.title}</h3>
-              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed flex-1 mb-4 sm:mb-5">{p.desc}</p>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {p.tech.map(t => <span key={t} className="text-[9px] sm:text-[10px] font-mono text-gray-500 bg-white/[0.03] px-2 py-0.5 sm:py-1 rounded">{t}</span>)}
+              <div className="p-5 sm:p-6 flex flex-col flex-1">
+                <h3 className="text-sm sm:text-base font-bold mb-2 text-gray-200 group-hover:text-primary transition-colors">{p.title}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed flex-1 mb-4">{p.desc}</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {p.tech.map(t => <span key={t} className="text-[9px] sm:text-[10px] font-mono text-gray-500 bg-white/[0.03] px-2 py-0.5 sm:py-1 rounded">{t}</span>)}
+                </div>
               </div>
             </motion.div>
           </Reveal>
         ))}
       </div>
 
-      {/* Swipe hint - mobile only */}
       <p className="text-center text-[10px] text-gray-700 font-mono mt-3 sm:hidden">← swipe →</p>
 
       <Reveal delay={0.3}>
