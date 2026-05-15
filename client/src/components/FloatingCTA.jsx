@@ -6,7 +6,16 @@ export default function FloatingCTA() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShow(window.scrollY > 600)
+      const footer = document.querySelector('footer')
+      const contactSection = document.getElementById('contact')
+      if (footer && contactSection) {
+        const footerTop = footer.getBoundingClientRect().top
+        const contactTop = contactSection.getBoundingClientRect().top
+        // Hide when near contact section or footer
+        setShow(window.scrollY > 600 && footerTop > 200 && contactTop > 300)
+      } else {
+        setShow(window.scrollY > 600)
+      }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)

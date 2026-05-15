@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedinIn, FaWhatsapp, FaInstagram } from 'react-icons/fa'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.04] py-8 px-6">
+    <footer className="border-t border-white/[0.04] py-8 pb-20 sm:pb-8 px-6">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-[11px] text-gray-700 font-mono">
           {'// '} designed & built by <span className="text-primary/60">divyanshu gupta</span> — {new Date().getFullYear()}
