@@ -2,7 +2,7 @@
 
 A premium, modern developer portfolio with galaxy animations, GitHub API integration, scroll effects, and a terminal-inspired design language.
 
-**Live:** [divyanshu-portfolio.vercel.app](https://divyanshu-portfolio.vercel.app) • **GitHub:** [@divyanshu-builds-ui](https://github.com/divyanshu-builds-ui)
+**Live:** [divyanshu-portfolio.vercel.app](https://portfolio-divyanshu-git.vercel.app) • **GitHub:** [@divyanshu-builds-ui](https://github.com/divyanshu-builds-ui)
 
 ---
 
