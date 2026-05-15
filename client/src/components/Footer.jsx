@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa'
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaInstagram } from 'react-icons/fa'
 
 export default function Footer() {
   return (
@@ -10,6 +10,7 @@ export default function Footer() {
         <div className="flex gap-5">
           <a href="https://github.com/divyanshu-builds-ui" target="_blank" rel="noreferrer" className="text-gray-700 hover:text-primary transition-colors text-sm"><FaGithub /></a>
           <a href="https://linkedin.com/in/divyanshu-builds" target="_blank" rel="noreferrer" className="text-gray-700 hover:text-primary transition-colors text-sm"><FaLinkedinIn /></a>
+          <a href="https://instagram.com/divyanshu.builds" target="_blank" rel="noreferrer" className="text-gray-700 hover:text-primary transition-colors text-sm"><FaInstagram /></a>
           <a href="https://wa.me/918051725780" target="_blank" rel="noreferrer" className="text-gray-700 hover:text-primary transition-colors text-sm"><FaWhatsapp /></a>
         </div>
       </div>

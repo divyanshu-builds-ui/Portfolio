@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from '../components/Reveal'
 import { FaPaperPlane, FaEnvelope, FaWhatsapp, FaLinkedinIn, FaGithub, FaInstagram, FaPlus } from 'react-icons/fa'
@@ -12,9 +12,12 @@ const socials = [
 ]
 
 const faqs = [
-  { q: 'Do you take freelance projects?', a: 'Yes! I specialize in responsive frontend development with modern dark aesthetics.' },
-  { q: 'How do you manage coding with studies?', a: 'Discipline. I apply analytical reasoning from Physics/Math to solve programming challenges.' },
-  { q: "What's your turnaround time?", a: 'Typically 14 days for a complete website. Faster for smaller projects.' },
+  { q: 'Do you take freelance projects?', a: 'Yes! I build production-ready web solutions — from landing pages to full-stack applications with modern dark aesthetics.' },
+  { q: 'What services do you offer?', a: 'Custom web development, UI/UX modernization, and affordable startup/student packages. Delivery within 14 days.' },
+  { q: 'How do you manage coding with studies?', a: "I'm on a dedicated gap year focused entirely on mastering full-stack development before joining B.Tech CSE in 2027." },
+  { q: 'What is your tech stack?', a: 'React.js, Tailwind CSS, Vite, Node.js, Express.js, Git/GitHub, and Vercel for deployment. Always learning new tools.' },
+  { q: 'Can you build e-commerce or business websites?', a: "Absolutely. I've already built digital platforms for local businesses including product layouts, branding, and responsive UIs." },
+  { q: 'How can I contact you?', a: 'Email me at divyanshu.builds@gmail.com, message on WhatsApp (+91 8051725780), or fill the form above. I respond within 24 hours.' },
 ]
 
 const inputClass = "w-full px-4 sm:px-5 py-3.5 sm:py-4 bg-dark-900/50 border border-white/[0.06] rounded-xl text-white text-sm placeholder-gray-700 focus:border-primary/50 focus:outline-none focus:shadow-[0_0_20px_rgba(100,255,218,0.05)] transition-all duration-300"
@@ -23,6 +26,30 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const [status, setStatus] = useState('idle')
   const [openFaq, setOpenFaq] = useState(null)
+  const msgRef = useRef(null)
+
+  // Pre-fill message when "Hire Me" is clicked
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && window.__prefillContact) {
+        setForm(f => ({ ...f, message: "Hi Divyanshu, I saw your portfolio and I'd love to discuss a potential project with you!" }))
+        window.__prefillContact = false
+        setTimeout(() => {
+          if (msgRef.current) {
+            msgRef.current.focus()
+            msgRef.current.style.borderColor = 'rgba(100,255,218,0.5)'
+            msgRef.current.style.boxShadow = '0 0 20px rgba(100,255,218,0.1)'
+            setTimeout(() => {
+              if (msgRef.current) { msgRef.current.style.borderColor = ''; msgRef.current.style.boxShadow = '' }
+            }, 2000)
+          }
+        }, 500)
+      }
+    }, { threshold: 0.3 })
+    const section = document.getElementById('contact')
+    if (section) observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -49,10 +76,9 @@ export default function Contact() {
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4">
           Let's <span className="text-gradient">connect</span>
         </h2>
-        <p className="text-muted text-sm sm:text-base mb-8 sm:mb-12">Got a project? Drop a message.</p>
+        <p className="text-muted text-sm sm:text-base mb-8 sm:mb-12">Got a project in mind? Let's build something great together.</p>
       </Reveal>
 
-      {/* Socials */}
       <Reveal delay={0.1}>
         <div className="flex flex-wrap gap-2.5 sm:gap-3 mb-10 sm:mb-14">
           {socials.map(s => (
@@ -70,7 +96,6 @@ export default function Contact() {
         </div>
       </Reveal>
 
-      {/* Form */}
       <Reveal delay={0.2}>
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 mb-14 sm:mb-20">
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
@@ -78,7 +103,7 @@ export default function Contact() {
             <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="Email" className={inputClass} />
           </div>
           <input type="tel" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="Phone (optional)" className={inputClass} />
-          <textarea rows={4} required value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Your message..." className={`${inputClass} resize-none`} />
+          <textarea ref={msgRef} rows={4} required value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell me about your project..." className={`${inputClass} resize-none`} />
           <motion.button
             type="submit"
             disabled={status === 'sending'}
@@ -91,7 +116,6 @@ export default function Contact() {
         </form>
       </Reveal>
 
-      {/* FAQ */}
       <Reveal delay={0.3}>
         <p className="text-primary font-mono text-xs tracking-widest uppercase mb-4 sm:mb-6">// faq</p>
         <div className="space-y-2.5 sm:space-y-3">

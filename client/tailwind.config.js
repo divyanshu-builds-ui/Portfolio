@@ -23,6 +23,9 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'gradient': 'gradient 8s ease infinite',
+        'orb-1': 'orb1 20s ease-in-out infinite',
+        'orb-2': 'orb2 25s ease-in-out infinite',
+        'orb-3': 'orb3 18s ease-in-out infinite',
       },
       keyframes: {
         glow: {
@@ -36,6 +39,21 @@ export default {
         gradient: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+        },
+        orb1: {
+          '0%, 100%': { top: '10%', left: '10%' },
+          '25%': { top: '50%', left: '70%' },
+          '50%': { top: '70%', left: '30%' },
+          '75%': { top: '20%', left: '60%' },
+        },
+        orb2: {
+          '0%, 100%': { top: '60%', right: '10%' },
+          '33%': { top: '20%', right: '50%' },
+          '66%': { top: '80%', right: '30%' },
+        },
+        orb3: {
+          '0%, 100%': { bottom: '20%', left: '40%' },
+          '50%': { bottom: '60%', left: '70%' },
         },
       },
     },

@@ -6,7 +6,7 @@ const timeline = [
   { icon: <FaLightbulb />, year: 'Origin', title: 'The Spark', desc: 'Inspired by family at Adobe. Decided to build software.' },
   { icon: <FaMobileAlt />, year: 'Class 11', title: 'Mobile Coding', desc: 'First Python calculator on Pydroid 3. No PC, no excuses.' },
   { icon: <FaLaptopCode />, year: '2026', title: 'Web Dev Deep Dive', desc: 'Mastered HTML/CSS in 1 week. Built 3+ projects.' },
-  { icon: <FaFire />, year: 'Now', title: '90-Day Challenge', desc: 'Daily coding streak. Portfolio, login UI, React.' },
+  { icon: <FaFire />, year: 'Now', title: 'Non-Stop Coding', desc: 'Daily coding streak since day one. Portfolio, auth system, React apps.' },
   { icon: <FaRocket />, year: 'Next', title: 'Full Stack', desc: 'B.Tech + React + Node.js. Complete web apps.' },
 ]
 

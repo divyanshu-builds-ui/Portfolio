@@ -1,10 +1,11 @@
 import Reveal from '../components/Reveal'
-import { FaGraduationCap, FaCode, FaRocket } from 'react-icons/fa'
+import { FaGraduationCap, FaCode, FaRocket, FaMapMarkerAlt } from 'react-icons/fa'
 
 const tags = [
-  { icon: <FaGraduationCap />, label: '12th Graduate' },
-  { icon: <FaCode />, label: 'Self-taught Dev' },
-  { icon: <FaRocket />, label: 'Fast Learner' },
+  { icon: <FaMapMarkerAlt />, label: 'Madhubani, Bihar' },
+  { icon: <FaGraduationCap />, label: 'CSE Aspirant (2027)' },
+  { icon: <FaCode />, label: 'Full-Stack Learner' },
+  { icon: <FaRocket />, label: 'Gap Year Builder' },
 ]
 
 export default function About() {
@@ -23,10 +24,13 @@ export default function About() {
           
           <div className="relative">
             <p className="text-muted text-base sm:text-lg leading-relaxed mb-4">
-              I'm a web developer who started coding in school. I build responsive, clean websites and I'm currently mastering <span className="text-primary">React</span>, <span className="text-primary">Tailwind CSS</span>, and <span className="text-primary">JavaScript</span>.
+              Passionate and self-driven <span className="text-primary">Developer</span> fresh out of high school, currently utilizing a dedicated gap year to master advanced full-stack workflows and prepare for top-tier engineering institutions.
             </p>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              My goal is to become a full-stack engineer. I believe in learning by building — every project teaches me something new.
+            <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-4">
+              Proficient in crafting intuitive user interfaces and connecting them with modern backend services. Experienced in building real-world digital solutions, UI structures, and brand assets for local commercial enterprises.
+            </p>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Independent Full-Stack Learner & Aspiring Computer Science Engineer — Class of 2027.
             </p>
             <div className="flex flex-wrap gap-2 sm:gap-3 mt-6 sm:mt-8">
               {tags.map((t, i) => (
