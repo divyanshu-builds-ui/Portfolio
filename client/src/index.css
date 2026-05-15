@@ -41,6 +41,33 @@
   }
 }
 
+/* Shimmer text effect */
+.shimmer-text {
+  background: linear-gradient(
+    120deg,
+    #64ffda 0%,
+    #a5f3fc 25%,
+    #64ffda 50%,
+    #34d399 75%,
+    #64ffda 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 /* Noise texture overlay */
 body::before {
   content: '';
@@ -67,4 +94,13 @@ body::after {
 #root {
   position: relative;
   z-index: 1;
+}
+
+/* Hide scrollbar for swipe carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

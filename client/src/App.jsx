@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import DotNav from './components/DotNav'
+import FloatingCTA from './components/FloatingCTA'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import TechStack from './sections/TechStack'
@@ -16,6 +17,7 @@ export default function App() {
     <div className="min-h-screen">
       <Navbar />
       <DotNav sections={sections} />
+      <FloatingCTA />
       <main>
         <Hero />
         <About />

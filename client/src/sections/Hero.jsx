@@ -1,5 +1,33 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaDownload, FaArrowDown } from 'react-icons/fa'
+
+const roles = ['pixel-perfect websites.', 'modern web apps.', 'responsive UIs.', 'clean code.']
+
+function useTyping(words, speed = 80, pause = 2000) {
+  const [text, setText] = useState('')
+  const [wordIdx, setWordIdx] = useState(0)
+  const [deleting, setDeleting] = useState(false)
+
+  useEffect(() => {
+    const word = words[wordIdx]
+    const timeout = setTimeout(() => {
+      if (!deleting) {
+        setText(word.slice(0, text.length + 1))
+        if (text.length + 1 === word.length) setTimeout(() => setDeleting(true), pause)
+      } else {
+        setText(word.slice(0, text.length - 1))
+        if (text.length === 0) {
+          setDeleting(false)
+          setWordIdx((wordIdx + 1) % words.length)
+        }
+      }
+    }, deleting ? speed / 2 : speed)
+    return () => clearTimeout(timeout)
+  }, [text, deleting, wordIdx, words, speed, pause])
+
+  return text
+}
 
 const container = {
   hidden: {},
@@ -11,9 +39,11 @@ const item = {
 }
 
 export default function Hero() {
+  const typed = useTyping(roles)
+
   return (
     <section id="home" className="min-h-[100dvh] flex items-center justify-center text-center px-5 relative overflow-hidden">
-      {/* Floating gradient orbs - smaller on mobile */}
+      {/* Floating gradient orbs */}
       <div className="absolute top-1/4 -left-20 w-48 md:w-72 h-48 md:h-72 bg-primary/10 rounded-full blur-[100px] animate-float" />
       <div className="absolute bottom-1/4 -right-20 w-52 md:w-80 h-52 md:h-80 bg-accent/10 rounded-full blur-[100px] animate-float [animation-delay:3s]" />
 
@@ -23,13 +53,15 @@ export default function Hero() {
         </motion.p>
 
         <motion.h1 variants={item} className="text-4xl sm:text-5xl md:text-8xl font-black leading-[0.9] tracking-tight">
-          <span className="text-gradient">Divyanshu</span>
+          <span className="shimmer-text">Divyanshu</span>
           <br />
           <span className="text-white/90">Gupta</span>
         </motion.h1>
 
-        <motion.p variants={item} className="text-base sm:text-lg md:text-xl text-muted mt-4 sm:mt-6 font-light">
-          I craft <span className="text-primary font-medium">pixel-perfect</span> web experiences.
+        {/* Typing animation */}
+        <motion.p variants={item} className="text-base sm:text-lg md:text-xl text-muted mt-4 sm:mt-6 font-light h-8">
+          I build <span className="text-primary font-medium">{typed}</span>
+          <span className="animate-pulse text-primary">|</span>
         </motion.p>
 
         <motion.p variants={item} className="text-gray-600 mt-3 sm:mt-4 max-w-md mx-auto text-xs sm:text-sm leading-relaxed">

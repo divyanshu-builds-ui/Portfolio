@@ -1,5 +1,7 @@
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from '../components/Reveal'
+import Counter from '../components/Counter'
 import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa'
 
 const projects = [
@@ -26,7 +28,15 @@ const projects = [
   },
 ]
 
+const stats = [
+  { value: 3, suffix: '+', label: 'Projects' },
+  { value: 90, suffix: '', label: 'Day Streak' },
+  { value: 7, suffix: '+', label: 'Technologies' },
+]
+
 export default function Projects() {
+  const scrollRef = useRef(null)
+
   return (
     <section id="projects" className="py-20 sm:py-32 px-5 sm:px-6 max-w-5xl mx-auto">
       <Reveal>
@@ -37,16 +47,33 @@ export default function Projects() {
         <p className="text-muted text-sm sm:text-base mb-8 sm:mb-12">Shipped and deployed.</p>
       </Reveal>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+      {/* Stats counters */}
+      <Reveal>
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-10 sm:mb-14">
+          {stats.map(s => (
+            <div key={s.label} className="glass-card p-4 sm:p-5 text-center">
+              <p className="text-xl sm:text-3xl font-black text-primary">
+                <Counter target={s.value} suffix={s.suffix} />
+              </p>
+              <p className="text-[10px] sm:text-xs text-gray-600 font-mono mt-1">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* Mobile: horizontal scroll | Desktop: grid */}
+      <div
+        ref={scrollRef}
+        className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-4 sm:pb-0 -mx-5 px-5 sm:mx-0 sm:px-0 scrollbar-hide"
+      >
         {projects.map((p, i) => (
           <Reveal key={p.title} delay={i * 0.1}>
             <motion.div
               whileHover={{ y: -8 }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="glass-card p-5 sm:p-7 flex flex-col h-full group relative overflow-hidden hover:border-primary/20 transition-all duration-300"
+              className="glass-card p-5 sm:p-7 flex flex-col min-w-[280px] sm:min-w-0 h-full snap-center group relative overflow-hidden hover:border-primary/20 transition-all duration-300"
             >
-              {/* Top glow line */}
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="flex justify-between items-center mb-4 sm:mb-5">
@@ -66,6 +93,9 @@ export default function Projects() {
           </Reveal>
         ))}
       </div>
+
+      {/* Swipe hint - mobile only */}
+      <p className="text-center text-[10px] text-gray-700 font-mono mt-3 sm:hidden">← swipe →</p>
 
       <Reveal delay={0.3}>
         <div className="mt-10 sm:mt-14 text-center">
